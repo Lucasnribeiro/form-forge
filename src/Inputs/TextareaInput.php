@@ -7,7 +7,8 @@ class TextareaInput extends AbstractInput
     public function render(): string
     {
         $value = $this->options['value'] ?? '';
-        return $this->getLabel() .
-               "<textarea name=\"{$this->name}\" id=\"{$this->name}\">{$value}</textarea>";
+        $attributes = $this->renderAttributes() ?? '' ;
+        return $this->label->render() .
+               "<textarea name=\"{$this->name}\" id=\"{$this->name}\"{$attributes}>{$value}</textarea>";
     }
 }

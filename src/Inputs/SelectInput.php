@@ -4,12 +4,13 @@ namespace Lucasnribeiro\FormForge\Inputs;
 
 class SelectInput extends AbstractInput
 {
-    public function render(): string
+    public function render()
     {
         $options = $this->options['options'] ?? [];
         $value = $this->options['value'] ?? '';
+        $attributes = $this->renderAttributes() ?? '' ;
 
-        $html = $this->getLabel() . "<select name=\"{$this->name}\" id=\"{$this->name}\">";
+        $html = $this->label->render() . "<select name=\"{$this->name}\" id=\"{$this->name}\"{$attributes}>";
         foreach ($options as $optionValue => $optionLabel) {
             $selected = $optionValue == $value ? ' selected' : '';
             $html .= "<option value=\"{$optionValue}\"{$selected}>{$optionLabel}</option>";

@@ -4,10 +4,11 @@ namespace Lucasnribeiro\FormForge\Inputs;
 
 class TextInput extends AbstractInput
 {
-    public function render(): string
+    public function render()
     {
         $value = $this->options['value'] ?? '';
-        return $this->getLabel() .
-               "<input type=\"text\" name=\"{$this->name}\" id=\"{$this->name}\" value=\"{$value}\">";
+        $attributes = $this->renderAttributes() ?? '' ;
+        return $this->label->render() . 
+               "<input type=\"text\" name=\"{$this->name}\" id=\"{$this->name}\" value=\"{$value}\"{$attributes}>";
     }
 }
