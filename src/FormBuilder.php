@@ -10,7 +10,7 @@ use Lucasnribeiro\FormForge\Inputs\InputFactory;
 
 class FormBuilder
 {
-    public static function create(): Form
+    public static function create()
     {
         $inputFactory = new InputFactory();
         $inputFactory->register('text', TextInput::class);

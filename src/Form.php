@@ -15,12 +15,16 @@ class Form
     private $globalClasses = [];
     private $globalStyles = [];
     private $submitButton;
+    private $cache;
+    private $cacheKey;
 
     public function __construct(InputFactory $inputFactory)
     {
         $this->validator = new Validator();
         $this->inputFactory = $inputFactory;
         $this->submitButton = new SubmitButton();
+        $this->cache = FileCache::getInstance();
+        $this->cacheKey = null;
     }
 
     public function setMethod(string $method)
@@ -63,6 +67,7 @@ class Form
         
         $field = $this->inputFactory->create($type, $name, $options);
         $this->fields[$name] = $field;
+        $this->cacheKey = null;
 
         return $this;
     }
@@ -74,6 +79,22 @@ class Form
     }
 
     public function render()
+    {
+
+        $this->cacheKey = $this->generateCacheKey();
+
+        if ($this->cache->has($this->cacheKey)) {
+            return $this->cache->get($this->cacheKey);
+        }
+
+        $html = $this->generateFormHtml();
+
+        $this->cache->set($this->cacheKey, $html);
+
+        return $html;
+    }
+
+    private function generateFormHtml()
     {
         $actionAttr = $this->action ? " action=\"{$this->action}\"" : '';
         if (in_array($this->method, ['put', 'patch', 'delete'])) {
@@ -94,10 +115,23 @@ class Form
         }
         $html .= $this->submitButton->render();
         $html .= '</form>';
+
         return $html;
     }
 
-    public function submitButton(): SubmitButton
+    private function generateCacheKey()
+    {
+        return md5(serialize([
+            $this->fields,
+            $this->method,
+            $this->action,
+            $this->globalClasses,
+            $this->globalStyles,
+            $this->submitButton
+        ]));
+    }
+
+    public function submitButton()
     {
         return $this->submitButton;
     }
