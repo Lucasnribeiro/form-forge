@@ -27,17 +27,17 @@ abstract class AbstractInput
 
     abstract public function render();
 
-    public function label(): Label
+    public function label()
     {
         return $this->label;
     }
 
-    protected function getClasses(): string
+    protected function getClasses()
     {
         return !empty($this->classes) ? implode(' ', $this->classes) : '';
     }
 
-    protected function getStyles(): string
+    protected function getStyles()
     {
         if (empty($this->styles)) {
             return '';
@@ -51,7 +51,7 @@ abstract class AbstractInput
         ));
     }
 
-    protected function renderAttributes(): string
+    protected function renderAttributes()
     {
         $attributes = [];
 

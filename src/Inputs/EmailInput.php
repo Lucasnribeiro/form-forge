@@ -4,7 +4,7 @@ namespace Lucasnribeiro\FormForge\Inputs;
 
 class EmailInput extends AbstractInput
 {
-    public function render(): string
+    public function render()
     {
         $value = $this->options['value'] ?? '';
         $attributes = $this->renderAttributes() ?? '' ;

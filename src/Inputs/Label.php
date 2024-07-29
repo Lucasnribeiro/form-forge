@@ -14,7 +14,7 @@ class Label
         $this->text = $text;
     }
 
-    public function addClass(string $class): self
+    public function addClass(string $class)
     {
         if (!in_array($class, $this->classes)) {
             $this->classes[] = $class;
@@ -22,7 +22,7 @@ class Label
         return $this;
     }
 
-    public function render(): string
+    public function render()
     {
         $classes = !empty($this->classes) ? ' class="' . implode(' ', $this->classes) . '"' : '';
         return "<label for=\"{$this->for}\"{$classes}>{$this->text}</label>";
