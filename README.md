@@ -1,6 +1,13 @@
+
+![Packagist Version](https://img.shields.io/packagist/v/Lucasnribeiro/form-forge)![Packagist Dependency Version](https://img.shields.io/packagist/dependency-v/Lucasnribeiro/form-forge/php)
+
 # FormForge
 
 FormForge is a OOP based form builder for PHP. The goal of this project is to be an example of how to build libraries using composer autoloader and PSR-4. The abstractions contained here can be ported into many other projects that uses OOP. This is not production ready, it's meant to be just an study. 
+
+## Dependencies
+- Composer
+- PHP 7.0+ or 8.0+
 
 ## Features
 
@@ -18,7 +25,10 @@ You can install FormForge via Composer:
 ```bash
 composer require lucasnribeiro/form-forge
 
-``` 
+```
+
+## Class UML Diagram
+![UML Classes](https://raw.githubusercontent.com/Lucasnribeiro/form-forge/main/diagrams/classes.png)
 
 ## Basic Usage
 
