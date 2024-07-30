@@ -6,7 +6,7 @@
 FormForge is a OOP based form builder for PHP. The goal of this project is to be an example of how to build libraries using composer autoloader and PSR-4. The abstractions contained here can be ported into many other projects that uses OOP. This is not production ready, it's meant to be just an study. 
 
 ## Dependencies
-- Composer
+- Composer 2.4+
 - PHP 7.0+ or 8.0+
 
 ## Features
